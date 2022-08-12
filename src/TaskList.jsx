@@ -1,23 +1,26 @@
-import { useEffect, useState } from "react";
-import { tasks } from "./tasks";
+import { tasks as data } from "./tasks";
+import { useState, useEffect } from "react";
 
-console.log(tasks);
 
 function TaskList() {
-  const [tasks, setTasks] = useState([...tasks]);
+  const [tasks, setTasks] = useState([])
 
-useEffect(()=> {
-  setTasks(tasks)
-}, [])
+  useEffect(()=> {
+    setTasks(data)
+  },[])
 
-  if (tasks.length === 0){
-    return <h1>No hay tareas aún</h1>
+
+  if (tasks.length === 0) {
+    return <h1>No hay tareas aún</h1>;
   }
 
   return (
     <div>
       {tasks.map((task) => (
-        <div>tarea</div>
+        <div key={task.id}>
+          <h1>{task.title}</h1>
+          <p>{task.description}</p>
+        </div>
       ))}
     </div>
   );
